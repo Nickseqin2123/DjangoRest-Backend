@@ -1,5 +1,9 @@
+import json
+
+
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
+from django.http import QueryDict
 from rest_framework.response import Response
 from User.serializers import UserFriendsSerializer
 from django.contrib.auth import get_user_model
@@ -34,15 +38,16 @@ class FriendsOperationsView(ModelViewSet):
         
     @action(
         methods=['DELETE'],
-        detail=False,
-        url_path=r'delete_friends/[\w-]+/[\w-]+'
+        detail=False
         )
-    def delete_friends(self, request: HttpRequest) -> Response:
+    def delete_friend(self, request: HttpRequest) -> Response: # x-www-form-urlencoded (Postman)
         user_model = get_user_model()
-        users = request.path.split('/')
         
-        from_user = users[-3]
-        to_user = users[-2]
+        data = request.body.decode('utf-8')
+        result = QueryDict(data).dict()
+        
+        from_user = result.get('from_user')
+        to_user = result.get('to_user')
         
         try:
             from_user = user_model.objects.get(tag_user=from_user)
@@ -53,7 +58,7 @@ class FriendsOperationsView(ModelViewSet):
         except Exception as er:
             return Response({"response": er.args[0]})
         
-        return Response({"response": "Вы теперь не друзья :<"})
+        return Response({"response": "Вы больше не друзья :<"})
     
 
 # В конце проекта нужно подумать о безопасности API

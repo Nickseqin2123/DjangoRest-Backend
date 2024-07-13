@@ -8,5 +8,5 @@ router.register(r'friends', FriendsOperationsView, basename='friends')
 
 
 urlpatterns = [
-    path('api/v8/', include(router.urls))
+    path('api/v8/', include(router.urls)) # api/v8/friends/...
 ]
