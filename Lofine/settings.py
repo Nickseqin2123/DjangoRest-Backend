@@ -88,8 +88,8 @@ DATABASES = {
         'NAME': 'lofine_rest',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'PASSWORD': 'NekitVip123_ZXCPUDGE228',
-        'USER': 'root'
+        'PASSWORD': 'ZXCPUDGE228',
+        'USER': 'nikita'
     }
 }
 
