@@ -41,6 +41,7 @@ class UserProfileSer(UserSerializer):
             'tag_user',
             'first_name',
             'last_name',
+            'photo',
             'telephone_number',
             'birthday',
             'city',

@@ -11,7 +11,7 @@ class Users(generics.ListAPIView):
 
 class UserOther(generics.ListAPIView):
     serializer_class = UserSer
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
     
     def get_queryset(self):
         return User.objects.filter(pk=self.kwargs['pk'])
